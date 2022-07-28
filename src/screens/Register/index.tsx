@@ -34,7 +34,7 @@ export function Register() {
       alert('The name does not provided')
     }
 
-
+    Navigation.navigate('tasks')
   } 
 
 
