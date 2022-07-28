@@ -1,9 +1,9 @@
-interface ProfileData{
+export interface ProfileData{
   name:string;
-  github:string;
+  github?:string;
   password:string;
 }
 
-interface ProfileRepository{
+export interface ProfileRepository{
   create:(data:ProfileData)=> Promise<void>
 }
