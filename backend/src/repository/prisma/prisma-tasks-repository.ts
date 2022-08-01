@@ -2,7 +2,7 @@ import { prisma } from '../../prisma'
 import {TasksData, TasksRepository} from '../tasks-respository'
 
 
-class PrismaTasksRepository implements TasksRepository{
+export class PrismaTasksRepository implements TasksRepository{
   async create(data: TasksData){
 
     const {isChecking,title} = data
