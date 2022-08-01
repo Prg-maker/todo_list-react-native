@@ -14,3 +14,9 @@ model Profile{
   github String?
   password String
 }
+
+model Tasks{
+  id String @id @default(uuid())
+  title String
+  isChecking Boolean
+}

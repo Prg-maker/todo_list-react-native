@@ -1,9 +1,9 @@
-interface TasksData{
+export interface TasksData{
   title:string;
   isChecking:boolean;
 }
 
 
-interface TasksRepository{
+export interface TasksRepository{
   create:(data:TasksData)=> Promise<void>
 }
