@@ -13,10 +13,16 @@ model Profile{
   name String
   github String?
   password String
+
+  tasks Tasks[]
 }
 
 model Tasks{
   id String @id @default(uuid())
   title String
   isChecking Boolean
+
+  profile Profile @relation(fields: [profileId] , references: [id])
+  profileId String
+
 }

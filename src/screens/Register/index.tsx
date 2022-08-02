@@ -25,13 +25,13 @@ export function Register() {
   async function handleRegister(){
 
     if(!name || password.length <= 3){
-      alert('The name does not provided')
+      return alert('The name does not provided')
     }
     if(!github || password.length <= 3){
-      alert('The name does not provided')
+      return alert('The name does not provided')
     }
     if(!password || password.length <= 8){
-      alert('The name does not provided')
+      return alert('The name does not provided')
     }
 
     Navigation.navigate('tasks')
