@@ -10,7 +10,8 @@ export class PrismaTasksRepository implements TasksRepository{
     await prisma.tasks.create({
       data:{
         title,
-        isChecking
+        isChecking,
+        profileId:''
       }
     })
   }
