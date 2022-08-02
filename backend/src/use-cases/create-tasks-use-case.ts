@@ -15,5 +15,10 @@ export class CreateTasksRepository{
     if(!title){
       throw new Error('O  título não foi fornecido ')
     }
+
+    this.prismaCreateTasksRepository.create({
+      title,
+      isChecking
+    })
   }
 }

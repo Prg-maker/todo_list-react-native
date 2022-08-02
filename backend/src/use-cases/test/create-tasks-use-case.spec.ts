@@ -15,4 +15,11 @@ describe('testing create tasks use case', () => {
     })).rejects.toThrow()
   })
 
+
+  it('should verify create' ,  async () => {
+    await expect(createTasksRepository.execute({
+      title:'nova_tarefa',
+      isChecking:false
+    })).resolves.not.toThrow()
+  })
 })

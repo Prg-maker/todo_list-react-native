@@ -18,17 +18,19 @@ export class CreateProfileUseCase{
 
 
     if(!name || !password){
+
       throw new Error('O nome ou senha não foi fornecido')
+      
     }
 
     
     if(name.length <= 2 ){
-      throw new Error('O nome prequeno')
+      throw new Error('O nome é muito pequeno')
     }
 
         
     if(password.length <= 7 ){
-      throw new Error('O senha muito prequena')
+      throw new Error('O senha muito pequena')
     }
 
     await this.prismaProfileRepository.create({
