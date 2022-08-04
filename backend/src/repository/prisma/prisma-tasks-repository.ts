@@ -1,5 +1,5 @@
 import { prisma } from '../../prisma'
-import {TasksData, TasksRepository} from '../tasks-repository'
+import {AllTasksData, TasksData, TasksRepository} from '../tasks-repository'
 
 
 export class PrismaTasksRepository implements TasksRepository{
@@ -14,5 +14,17 @@ export class PrismaTasksRepository implements TasksRepository{
         profileId,
       }
     })
+  }
+
+  async listAllTasks(ProfileId:string){
+
+    const tasks  = await prisma.tasks.findMany({
+      where:{
+        profileId:ProfileId
+      }
+    }) 
+   
+    return tasks
+
   }
 }

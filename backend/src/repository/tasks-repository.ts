@@ -5,7 +5,14 @@ export interface TasksData{
 
 }
 
+export interface AllTasksData{
+  id:string;
+  title:string;
+  isChecking:boolean;
+}
+
 
 export interface TasksRepository{
   create:(data:TasksData)=> Promise<void>
+  listAllTasks: (ProfileId:string)=> Promise<AllTasksData[] | null>
 }
