@@ -1,5 +1,5 @@
-import { Request ,Response } from "express";
-import { CreateProfileUseCase } from "../use-cases/create-profile-use-case";
+import { Response , Request } from "express";
+import { LoginProfileUseCase } from "../use-cases/login-profile-use-case";
 import { PrismaProfileRepository } from "../repository/prisma/prisma-profile-repository";
 
 type IRequest = {
@@ -10,10 +10,8 @@ type IRequest = {
   };
 };
 
-interface MessageError{
-  message:string
-}
-export class ProfileController {
+
+export class LoginProfileController {
 
  
 
@@ -21,19 +19,20 @@ export class ProfileController {
     const { name, password, github } = request.body;
 
     const prismaProfileRepository = new PrismaProfileRepository();
-    const createProfileUseCase = new CreateProfileUseCase(
+    const loginProfileUseCase = new LoginProfileUseCase(
       prismaProfileRepository
     );
 
     try{
-      await createProfileUseCase.execute({
+
+      const profile = await loginProfileUseCase.execute({
         name,
         password,
-        github,
-      });
-      return response.status(201).send({
-        message:'created'
+        github
       })
+
+      return response.status(200).json(profile)
+
     }catch(Error){
       
       const error = Error as {

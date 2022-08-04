@@ -19,9 +19,7 @@ export class LoginProfileUseCase{
     const {name, password , github} = request
 
     if(!name || !password){
-
       throw new Error('O nome ou senha não foi fornecido')
-      
     }
 
     
@@ -33,5 +31,14 @@ export class LoginProfileUseCase{
     if(password.length <= 7 ){
       throw new Error('O senha muito pequena')
     }
+
+    const profile = await this.prismaProfileRepository.login({
+      name,
+      password,
+      github
+    })
+
+    return profile
+    
   }
 }
