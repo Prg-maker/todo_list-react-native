@@ -6,7 +6,7 @@ interface RequestTasks{
   profileId:string
 }
 
-export class CreateTasksRepository{
+export class CreateTasksUseCase{
 
   constructor(
     private prismaCreateTasksRepository: PrismaTasksRepository
@@ -15,7 +15,7 @@ export class CreateTasksRepository{
   async execute({isChecking,title , profileId}:RequestTasks){
     
     if(!profileId){
-      throw new Error('O  título não foi fornecido ')
+      throw new Error('O  profileId não foi fornecido ')
     }
 
     if(!title){
