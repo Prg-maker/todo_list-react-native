@@ -5,13 +5,13 @@ import {TasksData, TasksRepository} from '../tasks-repository'
 export class PrismaTasksRepository implements TasksRepository{
   async create(data: TasksData){
 
-    const {isChecking,title} = data
+    const {isChecking,title , profileId} = data
 
     await prisma.tasks.create({
       data:{
         title,
         isChecking,
-        profileId:''
+        profileId,
       }
     })
   }

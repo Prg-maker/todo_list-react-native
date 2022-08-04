@@ -1,9 +1,11 @@
 import {CreateProfileUseCase} from '../create-profile-use-case'
 
 const createSpy = jest.fn()
+const loginSpy = jest.fn()
 
 const createProfileUseCase = new CreateProfileUseCase({
-  create:createSpy
+  create:createSpy,
+  login:loginSpy
 })
 
 describe('testing create profile use case' , ()=> {
