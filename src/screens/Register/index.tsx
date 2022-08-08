@@ -9,12 +9,16 @@ import { Button } from '../../components/Button';
 import {useNavigation} from '@react-navigation/native'
 
 import {useState} from 'react'
+import { api } from '../../libs/api';
 
 export function Register() {
 
   const [name , setName] = useState('')
   const [github , setGithub] = useState('')
   const [password , setPassword] = useState('')
+
+  const [isLoadingButton , setIsLoadingButton] = useState(false)
+  const [ isSuccess , setIsSuccess ] = useState(false)
 
   const Navigation = useNavigation()
 
@@ -24,17 +28,27 @@ export function Register() {
 
   async function handleRegister(){
 
-    if(!name || password.length <= 3){
+    if(!name || name.length <= 3){
       return alert('The name does not provided')
     }
-    if(!github || password.length <= 3){
-      return alert('The name does not provided')
+    if(!github || github.length <= 3){
+      return alert('The github does not provided')
     }
-    if(!password || password.length <= 8){
-      return alert('The name does not provided')
+    if(!password || password.length <= 7){
+      return alert('The password does not provided')
     }
 
-    Navigation.navigate('tasks')
+    
+    setIsLoadingButton(true)
+
+    await api.post('/', {
+      name,
+      password,
+      github
+    })
+
+    setIsSuccess(true)
+    setIsLoadingButton(false)
   } 
 
 
@@ -66,6 +80,8 @@ export function Register() {
           <Button
             title='Registration'
             onPress={handleRegister}
+            isLoading={isLoadingButton}
+            isSuccess={isSuccess}
           />
 
           <View style={styles.containerLink}>

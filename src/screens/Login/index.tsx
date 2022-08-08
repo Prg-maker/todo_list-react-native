@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {  Text,  TouchableOpacity, View } from 'react-native';
 
 import { styles } from './styles';
@@ -10,10 +10,22 @@ import { useNavigation } from '@react-navigation/native';
 export function Login() {
 
 
+  const [name , setName] = useState('')
+  const [password , setPassword] = useState('')
+
   const Navigation = useNavigation()
   
   function handleNavigatorRegister(){
     Navigation.navigate('register')
+  }
+
+  async function handleLogin(){
+    if(!name || name.length <= 3){
+      return alert('The name does not provided')
+    }
+    if(!password || password.length <= 7){
+      return alert('The password does not provided')
+    }
   }
 
 
@@ -27,11 +39,14 @@ export function Login() {
 
      
         <Input
-          placeholder='Enter your username github'
+          placeholder='Enter your username'
+          onChangeText={setName}
         />
         <Input
           placeholder='Enter your password'
           keyboardType='visible-password'
+          onChangeText={setPassword}
+
         />
         <View style={styles.containerSubmit}>
           <Button

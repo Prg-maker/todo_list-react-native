@@ -1,24 +1,29 @@
 import {Text, TouchableOpacity , TouchableOpacityProps , StyleSheet, ActivityIndicator} from 'react-native'
+import SuccessSvg from '../../assets/success.svg'
 import theme from '../../theme'
 
 
 type Props = TouchableOpacityProps & {
   title:string,
-  isLoading?: boolean
+  isLoading?: boolean,
+  isSuccess?: boolean,
 }
 
-export function Button({title , isLoading = true , ...rest}:Props){
+export function Button({title , isLoading , isSuccess , ...rest}:Props){
   return(
     <TouchableOpacity
       style={styled.button}
       {...rest}
     >
       {
-        !isLoading ? 
+        isLoading ? 
         
-        <ActivityIndicator
-          size={32}
-        />
+        !isSuccess ? 
+          <ActivityIndicator
+            size={32}
+          />
+        : <SuccessSvg/>
+
         :
         
         <Text style={styled.title}>
