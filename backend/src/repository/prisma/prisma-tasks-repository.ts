@@ -27,4 +27,15 @@ export class PrismaTasksRepository implements TasksRepository{
     return tasks
 
   }
+
+  async updateChecking(TaskId:string){
+    await prisma.tasks.update({
+      where:{
+        id:TaskId
+      },
+      data:{
+        isChecking:true
+      }
+    })
+  }
 }

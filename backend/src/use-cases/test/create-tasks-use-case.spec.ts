@@ -1,9 +1,13 @@
-import { CreateTasksRepository } from '../create-tasks-use-case'
+import { CreateTasksUseCase } from '../create-tasks-use-case'
 
 const createSpy = jest.fn()
+const listAllSpy = jest.fn()
+const updateSpy = jest.fn()
 
-const createTasksRepository = new CreateTasksRepository({
-  create:createSpy
+const createTasksRepository = new CreateTasksUseCase({
+  create:createSpy,
+  listAllTasks:listAllSpy,
+  updateChecking:updateSpy
 }) 
 
 describe('testing create tasks use case', () => { 
