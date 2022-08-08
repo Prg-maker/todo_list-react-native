@@ -4,7 +4,6 @@ import { ModalCreateTask } from '../../components/ModalCreateTask';
 import { ModalViewTask } from '../../components/ModalViewTask';
 import { styles } from './styles';
 import {useNavigation} from '@react-navigation/native'
-import { api } from '../../libs/api';
 
 
 
@@ -33,7 +32,7 @@ export function Tasks() {
       </View>
 
       {
-        isOpen? <ModalViewTask profileId={dataProfile?.profileId} OpenAndCloseModal={handleIsOpen}/> : <ModalCreateTask OpenAndCloseModal={handleIsOpen}/>
+        isOpen? <ModalViewTask profileId={dataProfile?.profileId} OpenAndCloseModal={handleIsOpen}/> : <ModalCreateTask profileId={dataProfile?.profileId} OpenAndCloseModal={handleIsOpen}/>
       }
 
     </View>
