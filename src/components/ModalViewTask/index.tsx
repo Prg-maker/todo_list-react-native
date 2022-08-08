@@ -1,64 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, FlatList, Image, Modal, ModalProps , ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import CircleX from '../../assets/CircleX.svg'
 import { Task } from '../Task';
 import { styles } from './styles';
 import TodoListImg from '../../assets/to-do-list.png'
+import { api } from '../../libs/api';
+
+
 
 type Props = ModalProps & {
-  OpenAndCloseModal: ()=> void
+  OpenAndCloseModal: ()=> void;
+  profileId?:string;
 }
 
 
-export function ModalViewTask({OpenAndCloseModal,...rest}:Props) {
+interface TasksProps{
+  id:string;
+  title:string;
+  isChecking:boolean;
 
-  const [tasks , setTasks] = useState([
-    {
-      id:'1',
-      title:'nova tarefa',
-      check: false
-    },
-    {
-      id:'2',
-      title:'segunda tarefa',
-      check: true
-    },
-    {
-      id:'3',
-      title:'segunda tarefa',
-      check: true
-    },
-    {
-      id:'4',
-      title:'segunda tarefa',
-      check: true
-    },
-    {
-      id:'5',
-      title:'segunda tarefa',
-      check: true
-    },
-    {
-      id:'6',
-      title:'segunda tarefa',
-      check: true
-    },
-    {
-      id:'7',
-      title:'segunda tarefa',
-      check: true
-    },
-    {
-      id:'8',
-      title:'segunda tarefa',
-      check: true
-    },
-    {
-      id:'9',
-      title:'segunda tarefa',
-      check: true
+}
+
+
+export function ModalViewTask({OpenAndCloseModal, profileId,...rest}:Props) {
+
+  const [tasks , setTasks] = useState<TasksProps>()
+
+  useEffect(()=> {
+    
+    async function get(){
+      const {data} = await api.get<TasksProps>(`/tasks/${profileId}`)
+      console.log(data)
+      setTasks(data)
     }
-  ])
+
+    get()
+
+
+
+  },[])
+
+
+
 
 
 

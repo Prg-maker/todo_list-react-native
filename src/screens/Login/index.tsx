@@ -42,6 +42,13 @@ export function Login() {
       password
     })
 
+    Navigation.setParams({
+      profile:{
+        profileId: data.id,
+        github: data.github,
+        name: data.name,
+      }
+    })
 
     Navigation.navigate('tasks' , {
       profile:{
