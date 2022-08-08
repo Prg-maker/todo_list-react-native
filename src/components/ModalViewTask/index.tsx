@@ -30,7 +30,6 @@ export function ModalViewTask({OpenAndCloseModal, profileId,...rest}:Props) {
     
     async function get(){
       const {data} = await api.get<TasksProps[]>(`/tasks/${profileId}`)
-      console.log(data)
       setTasks(data)
     }
 
@@ -69,7 +68,7 @@ export function ModalViewTask({OpenAndCloseModal, profileId,...rest}:Props) {
               style={styles.containerTask}
               data={tasks}
               keyExtractor={item=> item.id}
-              renderItem={({item})=> <Task isCheck={item.isChecking} title={item.title}/>}
+              renderItem={({item})=> <Task isCheck={item.isChecking} title={item.title} taskId={item.id}/>}
               contentContainerStyle={{paddingBottom:10}}
               showsVerticalScrollIndicator={false}
               ListEmptyComponent={

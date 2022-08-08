@@ -19,7 +19,7 @@ export function CheckBox({
 
 
   return (
-    <TouchableOpacity style={styles.checkbox} onPress={toggleIsCheck} >
+    <TouchableOpacity style={styles.checkbox} onPress={toggleIsCheck } >
       {isCheck && <CheckImg/>}
     </TouchableOpacity>
   );

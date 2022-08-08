@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { api } from '../../libs/api';
 import theme from '../../theme';
 import { CheckBox } from '../CheckBox';
 
 interface Props{
   title: string;
-  isCheck: boolean
+  isCheck: boolean;
+  taskId:string
 }
 
 
-export function Task({title, isCheck}:Props) {
+export function Task({title, isCheck , taskId}:Props) {
 
 
-  function handleIsCheck(){
+  async function handleToggleIsCheck(){
+
+    await api.put('/task', {
+      taskId
+    })
   }
 
   return (
     <View style={styles.container}>
       <Text style={styles.titleTask}>{title}.</Text>
       <CheckBox
-        toggleIsCheck={handleIsCheck}
+        toggleIsCheck={handleToggleIsCheck}
         isCheck={isCheck}
       />
     </View>
