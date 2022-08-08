@@ -4,7 +4,13 @@ export declare global{
       home:undefined;
       register: undefined;
       login:undefined;
-      tasks:undefined;
+      tasks:{
+        profile:{
+          profileId:string;
+          github:string;
+          name:string;
+        }
+      };
     }
   }
 }

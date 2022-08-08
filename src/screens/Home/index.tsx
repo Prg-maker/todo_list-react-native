@@ -7,11 +7,11 @@ import {useNavigation} from '@react-navigation/native'
 
 export function Home() {
 
-  const [isLoading , setIsLoading] = useState(true)
+  const [isLoading , setIsLoading] = useState(false)
   const navigation = useNavigation()
 
   function handleToggleIsLoadingTest(){
-    setIsLoading(false)
+    setIsLoading(true)
     navigation.navigate('register')
   }
 

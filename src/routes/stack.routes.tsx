@@ -15,6 +15,7 @@ export function StackRoutes(){
       <Screen
         name="home"
         component={Home}
+
       />
        <Screen
         name="register"

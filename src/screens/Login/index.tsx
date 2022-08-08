@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
-import {  Text,  TouchableOpacity, View } from 'react-native';
+import {  Alert, Text,  TouchableOpacity, View } from 'react-native';
 
 import { styles } from './styles';
 import RobotoImg from '../../assets/studenRobot.svg'
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { useNavigation } from '@react-navigation/native';
+import { api } from '../../libs/api';
+
+
+interface ProfileProps{
+  id:string;
+  name:string;
+  github:string;
+}
 
 export function Login() {
 
 
   const [name , setName] = useState('')
   const [password , setPassword] = useState('')
+  const [isLoadingButtonLogin , setIsLoadingButtonLogin] = useState(false)
 
   const Navigation = useNavigation()
   
@@ -26,6 +35,24 @@ export function Login() {
     if(!password || password.length <= 7){
       return alert('The password does not provided')
     }
+
+
+    const {data} = await api.post<ProfileProps>('/login',{
+      name,
+      password
+    })
+
+
+    Navigation.navigate('tasks' , {
+      profile:{
+        profileId: data.id,
+        github: data.github,
+        name: data.name,
+      }
+    })
+    
+    setIsLoadingButtonLogin(true)
+
   }
 
 
@@ -51,6 +78,8 @@ export function Login() {
         <View style={styles.containerSubmit}>
           <Button
             title='Login'
+            onPress={handleLogin}
+            isLoading={isLoadingButtonLogin}
           />
 
           <View style={styles.containerLink}>
