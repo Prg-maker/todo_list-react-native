@@ -15,7 +15,7 @@ export class UpdateTaskUseCase{
     if(!request.taskId){
       throw new Error('tasksId does not provided')
     }
-
     await this.prismaTasksRepository.updateChecking(request.taskId)
+
   }
 }

@@ -12,6 +12,6 @@ router.post('/' , new ProfileController().handle)
 router.post('/login' , new LoginProfileController().handle)
 router.post('/tasks' , new CreateTasksController().handle)
 router.get('/tasks/:profileId' , new ListAllTasksController().handle)
-router.put('./task' , new UpdateTaskController().handle)
+router.put('/task' , new UpdateTaskController().handle)
 
 export default router 

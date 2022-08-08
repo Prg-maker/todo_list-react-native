@@ -29,6 +29,7 @@ export class PrismaTasksRepository implements TasksRepository{
   }
 
   async updateChecking(TaskId:string){
+    
     await prisma.tasks.update({
       where:{
         id:TaskId
@@ -37,5 +38,6 @@ export class PrismaTasksRepository implements TasksRepository{
         isChecking:true
       }
     })
+
   }
 }
